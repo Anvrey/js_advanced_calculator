@@ -1,26 +1,49 @@
 'use strict';
-
 /**
  * @return {object}
  */
+
 function makeCalculator() {
   return {
     result: 0,
-    add: (x, y) => x + y,
-    subtract: (x, y) => x - y,
-    multiply: (x, y) => x * y,
-    divide: (x, y) => x / y,
+    add(number) {
+      this.result += number;
 
-    operate(opeartion, num) {
-      this.result = opeartion(this.result, num);
+      return this.result;
+    },
+    subtract(number) {
+      this.result -= number;
+
+      return this.result;
+    },
+    multiply(number) {
+      this.result *= number;
+
+      return this.result;
+    },
+
+    divide(number) {
+      if (number === 0) {
+        this.result = -1;
+
+        return this.result;
+      }
+      this.result /= number;
+
+      return this.result;
+    },
+    operate(method, number) {
+      method.call(this, number);
 
       return this;
     },
-
     reset() {
       this.result = 0;
 
       return this;
+    },
+    getResult() {
+      return this.result;
     },
   };
 }

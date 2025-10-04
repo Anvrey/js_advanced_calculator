@@ -23,14 +23,9 @@ function makeCalculator() {
     },
 
     divide(number) {
-      if (number === 0) {
-        this.result = -1;
-
-        return this.result;
-      }
       this.result /= number;
 
-      return this.result;
+      return this;
     },
     operate(method, number) {
       method.call(this, number);
